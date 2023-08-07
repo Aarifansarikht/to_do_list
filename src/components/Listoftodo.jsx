@@ -1,24 +1,27 @@
 import React from 'react';
 import { UseSelector,useDispatch, useSelector } from 'react-redux';
-import { handleCreate } from '../redux/actions/todotask';
-
+import { deletetodo } from '../redux/actions/todotask';
+import {MdOutlineDelete} from 'react-icons/md'
 function Listoftodo(props) {
     const dispatch = useDispatch();
-    const listdata = useSelector((state)=>state.reducer)
+    const list = useSelector((state)=>state.todoreducer.list)
     return (
         <div className=' h-[100%] overflow-scroll flex flex-wrap gap-5 justify-center text-white pt-3'>
           {
-           listdata.map((v)=>{
+           list.map((v)=>{
             return <>
-            <div className="task_items h-[180px] w-[300px] bg-blue-400">
+            <div key={v.id} className="task_items h-[180px] w-[300px] bg-white rounded-md relative text-[2rem] text-black">
               {
-               v
+               v.text
               }
+              <div className="delete text-red-700  inline p-2 absolute bottom-0 right-0" onClick={()=>{dispatch(deletetodo(v.id))}}>
+              <MdOutlineDelete/>
+              </div>
             </div>
             </>
            })
           }
-          <h1>hello</h1>
+          
         </div>
     );
 }

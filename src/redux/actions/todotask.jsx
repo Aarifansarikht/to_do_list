@@ -1,5 +1,16 @@
-export const handleCreate = (e)=>{
+export const addtodo = (text)=>{
     return {
-        type: "CREATETASK",e
+        type: "ADD_TODO",
+        payload:{
+            id:new Date().getTime().toString(),
+            text:text
+        }
+    }
+}
+
+export const deletetodo = (id)=>{
+    return {
+        type: "DELETE_TODO",
+        id
     }
 }
