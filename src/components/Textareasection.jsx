@@ -8,8 +8,10 @@ function Textareasection(props) {
     const dispatch = useDispatch();
     const handlesubmit = (e)=>{
           e.preventDefault();
-          dispatch(addtodo(text));
-          setText('')
+          if (e.target[0].value.length !==0) {
+              dispatch(addtodo(text));
+              setText('')
+          }
     }
     return (
         <>
